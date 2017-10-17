@@ -7,9 +7,11 @@
 //
 
 #include <iostream>
+#include "ScoreSheet.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main() {
+    ScoreSheet s = ScoreSheet("Rami");
+    Dice d = {RED, 1};
+    s.print(std::cout);
     return 0;
 }

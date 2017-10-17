@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		25B53C921F9630B100E73590 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25B53C911F9630B100E73590 /* main.cpp */; };
+		25B53C9A1F9630EA00E73590 /* ScoreSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25B53C981F9630EA00E73590 /* ScoreSheet.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		25B53C8E1F9630B100E73590 /* CSI2372_Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CSI2372_Project; sourceTree = BUILT_PRODUCTS_DIR; };
 		25B53C911F9630B100E73590 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		25B53C981F9630EA00E73590 /* ScoreSheet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreSheet.cpp; sourceTree = "<group>"; };
+		25B53C991F9630EA00E73590 /* ScoreSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreSheet.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				25B53C911F9630B100E73590 /* main.cpp */,
+				25B53C981F9630EA00E73590 /* ScoreSheet.cpp */,
+				25B53C991F9630EA00E73590 /* ScoreSheet.h */,
 			);
 			path = CSI2372_Project;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25B53C9A1F9630EA00E73590 /* ScoreSheet.cpp in Sources */,
 				25B53C921F9630B100E73590 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
