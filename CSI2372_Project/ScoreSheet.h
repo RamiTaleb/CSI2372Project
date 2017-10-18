@@ -16,15 +16,15 @@
 enum Colour {RED, YELLOW, BLUE};
 
 struct Dice {
-    Colour a;
+    Colour colour;
     int num;
 };
 
 class ScoreSheet {
     std::string name;
     int redScore = 0, yellowScore = 0, blueScore = 0, overallScore = 0, failedAttempts = 0;
-    std::vector<Dice> redDice, yellowDice, blueDice;
 public:
+    std::vector<Dice> redDice, yellowDice, blueDice;
     ScoreSheet(std::string name);
     void print(std::ostream &o);
     void score(std::vector<Dice> dice, Colour colour, int pos);

@@ -11,7 +11,18 @@
 
 int main() {
     ScoreSheet s = ScoreSheet("Rami");
-    Dice d = {RED, 1};
+
+    for (int i = 0; i<10; i++){
+        s.redDice.insert(s.redDice.begin()+i, {RED, 0});
+    }
+    for (int i = 0; i<10; i++){
+        s.yellowDice.insert(s.yellowDice.begin()+i, {YELLOW, 0});
+    }
+    for (int i = 0; i<10; i++){
+        s.blueDice.insert(s.blueDice.begin()+i, {BLUE, 0});
+    }
+    // When assigning specific positions a DICE value.
+    //    s.redDice.at(0) = {RED, 2};
     s.print(std::cout);
     return 0;
 }
