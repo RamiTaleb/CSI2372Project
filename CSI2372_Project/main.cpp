@@ -1,28 +1,34 @@
-//
-//  main.cpp
-//  CSI2372_Project
-//
-//  Created by Rami Taleb on 2017-10-17.
-//  Copyright © 2017 Rami Taleb. All rights reserved.
-//
-
 #include <iostream>
-#include "ScoreSheet.h"
+#include "Dice.h"
+#include "Colour.h"
+#include "RollOfDice.h"
+#include "QwintoRow.h"
 
-int main() {
-    ScoreSheet s = ScoreSheet("Rami");
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-    for (int i = 0; i<10; i++){
-        s.redDice.insert(s.redDice.begin()+i, {RED, 0});
+int main(int argc, char** argv) {
+	Dice d(Colour::RED,3);
+	d.roll();
+	std::cout<< d <<std::endl;
+	RollOfDice r;
+    
+    r.roll();
+    
+    std::cout << r << std::endl;
+    
+    std::cout <<  r.getSum() << std::endl;
+    
+    RollOfDice b = r.pair(1, 2);
+    
+    std::cout << b << std::endl;
+    
+    for ( Dice &d : r ) {
+        std::cout << d << std::endl;
     }
-    for (int i = 0; i<10; i++){
-        s.yellowDice.insert(s.yellowDice.begin()+i, {YELLOW, 0});
-    }
-    for (int i = 0; i<10; i++){
-        s.blueDice.insert(s.blueDice.begin()+i, {BLUE, 0});
-    }
-    // When assigning specific positions a DICE value.
-    //    s.redDice.at(0) = {RED, 2};
-    s.print(std::cout);
-    return 0;
+    
+    QwintoRow<Colour::RED> qr;
+    
+//    std::cout << qr.operator<<(std::cout) << std::endl;
+    
+	return 0;
 }

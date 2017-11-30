@@ -1,33 +1,21 @@
-//
-//  ScoreSheet.h
-//  CSI2372_Project
-//
-//  Created by Rami Taleb on 2017-10-17.
-//  Copyright © 2017 Rami Taleb. All rights reserved.
-//
+#ifndef SCORESHEET_H
+#define SCORESHEET_H
 
-#ifndef ScoreSheet_h
-#define ScoreSheet_h
-
-#include <string>
 #include <iostream>
-#include <vector>
-
-enum Colour {RED, YELLOW, BLUE};
-
-struct Dice {
-    Colour colour;
-    int num;
+#include "Colour.h"
+class ScoreSheet{
+	friend std::ostream& operator<<(std::ostream &_os, QwixxRow<T,COLOUR> &qw);
+	private:
+		Player *player;
+		int _failedA, _oScore;
+	public:
+		virtual bool score(RollOfDice& _rod, Colour _c, int _pos = -1) = 0;
+		virtual int calcTotal() = 0;
+		virtual int setTotal();
+		bool operator!();
+		
+	protected:
+		virtual bool validate(int _pos) = 0;
 };
-
-class ScoreSheet {
-    std::string name;
-    int redScore = 0, yellowScore = 0, blueScore = 0, overallScore = 0, failedAttempts = 0;
-public:
-    std::vector<Dice> redDice, yellowDice, blueDice;
-    ScoreSheet(std::string name);
-    void print(std::ostream &o);
-    void score(std::vector<Dice> dice, Colour colour, int pos);
-};
-
-#endif /* ScoreSheet_h */
+std::ostream& operator<<(std::ostream &_os, ScoreSheet &_ss);
+#endif
