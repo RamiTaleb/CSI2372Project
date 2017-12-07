@@ -1,4 +1,3 @@
-
 #ifndef ROLL_OF_DICE_H
 #define ROLL_OF_DICE_H
 #include "Dice.h"
@@ -7,19 +6,27 @@
 #include "Colour.h"
 
 struct RollOfDice{
+	friend std::ostream& operator<<(std::ostream &_os, RollOfDice& rd);
 	private:
-    std::vector<Dice> container_dice{Dice(Colour::RED, 1), Dice(Colour::BLUE, 1), Dice(Colour::WHITE, 1), Dice(Colour::GREEN, 1), Dice(Colour::YELLOW, 1)};
-        int sum = 0;
+    	std::vector<Dice> container_dice;
+        int sum;
 	public:
 		RollOfDice();
         RollOfDice(std::vector<Dice> vec);
 		void roll();
+		int get_sum();
         //Not used for Quinto
 		RollOfDice pair(const int &a, const int &b) const;
-        operator int() const {return sum;};
-		friend std::ostream& operator<<(std::ostream &_os, RollOfDice& rd);
-        int getSum();
-    
+        operator int() const {
+        	int temp = 0;
+			for(auto& c:container_dice)	{
+				if(c.getActive()){
+					temp+=c.getNum();
+				}
+			}
+			return temp;       	
+		};
+		
         typename std::vector<Dice>::iterator begin();
         typename std::vector<Dice>::const_iterator begin() const;
         typename std::vector<Dice>::const_iterator cbegin() const;
@@ -27,4 +34,6 @@ struct RollOfDice{
         typename std::vector<Dice>::const_iterator end() const;
         typename std::vector<Dice>::const_iterator cend() const;
 };
+std::ostream& operator<<(std::ostream &_os, RollOfDice& rd);
 #endif
+

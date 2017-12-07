@@ -2,16 +2,9 @@
 #include "Colour.h"
 #include <iostream>
 #include <random>
-Dice::Dice(Colour colour, int num) : colour(colour), num(num){
-	
-}
+Dice::Dice(Colour colour, int num) : colour(colour), num(num){}
 
-//test - delete later
-Dice::Dice():colour{Colour::RED}, num{0}{
-	
-}
-
-int Dice::getNum(){
+int Dice::getNum() const{
     return num;
 }
 
@@ -19,7 +12,7 @@ void Dice::roll(){
 	num = RandomDice::rand();
 }
 
-std::ostream& operator<<(std::ostream &_os, Dice& d){
+std::ostream& operator<<(std::ostream &_os, const Dice& d){
 	std::string s;
 	switch(d.colour){
 		case 0:
@@ -29,15 +22,16 @@ std::ostream& operator<<(std::ostream &_os, Dice& d){
 			s = "YELLOW";
 			break;
 		case 2:
-			s = "GREEN";
+			s = "BLUE";
 			break;
 		case 3:
-			s = "BLUE";
+			s = "GREEN";
 			break;
 		case 4:
 			s = "WHITE";
 			break;
-	}
-	_os << "Colour: " << s << " : " << d.num << std::endl;
+	}	
+	_os << s << " : " << d.num << std::endl;
 	return _os;
 }
+

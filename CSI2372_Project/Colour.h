@@ -1,8 +1,4 @@
 #ifndef COLOUR_H
 #define COLOUR_H
-
-	enum Colour{
-	RED,YELLOW,GREEN,BLUE,WHITE
-	};
-
+	enum Colour{RED,YELLOW,BLUE,GREEN,WHITE};
 #endif

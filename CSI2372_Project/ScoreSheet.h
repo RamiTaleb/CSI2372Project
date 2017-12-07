@@ -3,19 +3,25 @@
 
 #include <iostream>
 #include "Colour.h"
+#include "Player.h"
 class ScoreSheet{
-	friend std::ostream& operator<<(std::ostream &_os, QwixxRow<T,COLOUR> &qw);
-	private:
-		Player *player;
-		int _failedA, _oScore;
+	friend std::ostream& operator<<(std::ostream &_os, const ScoreSheet &_ss);
+
 	public:
-		virtual bool score(RollOfDice& _rod, Colour _c, int _pos = -1) = 0;
+		ScoreSheet();
+		ScoreSheet(std::string);
+		virtual bool score(RollOfDice& _rod, Colour& _c, int _pos = -1) = 0;
 		virtual int calcTotal() = 0;
-		virtual int setTotal();
-		bool operator!();
-		
+		virtual void setTotal()= 0;
+		virtual bool operator!() = 0;
+		void incrementFailedThrow(){
+			++_failedA;
+		}		
 	protected:
-		virtual bool validate(int _pos) = 0;
+		virtual bool validate(int& _pos, Colour& _c) const = 0;		
+		int _failedA, _oScore;
+		std::string name;
+		Player *player;
 };
-std::ostream& operator<<(std::ostream &_os, ScoreSheet &_ss);
+std::ostream& operator<<(std::ostream &_os, const ScoreSheet &_ss);
 #endif
