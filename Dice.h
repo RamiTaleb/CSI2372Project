@@ -19,6 +19,7 @@ struct RandomDice{
 };
 
 /*
+ * Structure which represents a single die
  * 
  *
  *
@@ -26,17 +27,30 @@ struct RandomDice{
 struct Dice {
 	friend std::ostream& operator<<(std::ostream &_os, const Dice& d);
     public:    	
-    	Dice(Colour colour, int num=0);
-    	void roll();    	
+    	/* must construct dice with a color 
+    	 * default face value is 0 (unrolled)
+    	 * (makes no sense to default a color)
+		 */ 
+    	Dice(Colour colour, int num = 0);
+    	Dice(Colour colour, bool ac);
+    	
+    	// gives die random face value 1-6
+    	void roll();    
+		// returns face value of die	
         int getNum() const;
-        bool getActive() const {return active;}
-        void setActive(bool a){active = a;}
         
+        /*
+         * Design decision to set dice as "Active"
+         * if they were rolled in most previous inputBeforeRoll
+         * inline
+         */
+        bool getActive() const {return active;}
+        void setActive(bool a){active = a;}        
         Colour getColour() const{return colour;}
     private:
     	const Colour colour;
-    	bool active = false;
-    	int num;
+    	bool active;
+    	int num = 0;
 };
 std::ostream& operator<<(std::ostream &_os, const Dice& d);
 #endif

@@ -2,11 +2,17 @@
 #include "Dice.h"
 #include <vector>
 #include <iterator>
-//	DONE
 
-RollOfDice::RollOfDice():sum{0} {
+//constructor which takes a vector of dice
+RollOfDice::RollOfDice(const std::vector<Dice>& vec) : container_dice{vec},sum{0} {}
+
+//2 argument constructor
+RollOfDice::RollOfDice(const Colour& c, int i){
+	container_dice.push_back(Dice(c, i));
+	sum=i;
 }
-//get rid of later
+
+//gets the overall sum of die in a rollOfDice
 int RollOfDice::get_sum(){
 	sum=0;
 	for (auto& i : container_dice) {
@@ -14,8 +20,6 @@ int RollOfDice::get_sum(){
     }
     return sum;
 }
-RollOfDice::RollOfDice(std::vector<Dice> vec) : container_dice{vec},sum{get_sum()} {}
-
 
 void RollOfDice::roll() {   
 	sum = 0; 
@@ -25,16 +29,17 @@ void RollOfDice::roll() {
     }
 }
 
-
 RollOfDice RollOfDice::pair(const int &a, const int &b) const{
     return RollOfDice({container_dice[a], container_dice[b]});
 }
 
-std::ostream& operator<<(std::ostream &_os, RollOfDice& rd){
+std::ostream& operator<<(std::ostream &_os, const RollOfDice& rd){
+	int count = 0;
     for (auto& i : rd.container_dice){
     
     	if(i.getActive()){
-    		_os << i;
+    		_os <<count<<": "<< i;
+    		++count;
 		}
         	
     }

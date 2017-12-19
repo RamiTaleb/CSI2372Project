@@ -3,14 +3,13 @@
 #include "QwintoScoreSheet.h"
 #include "Player.h"
 #include "Colour.h"
+#include "ScoreSheet.h"
 class QwintoPlayer : public Player{
-	private:
-		QwintoScoreSheet qsc;		
+	private:		
 	public:
 		QwintoPlayer(std::string name);
 		virtual void inputBeforeRoll(RollOfDice& _rod);
 		virtual void inputAfterRoll(RollOfDice& _rod);
-		QwintoScoreSheet& getScoreSheet() {
-		return qsc;}
+		virtual ScoreSheet* getScoreSheet() const;
 };
 #endif

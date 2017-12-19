@@ -1,10 +1,15 @@
 #include "QwintoScoreSheet.h"
 
 
-
-
-bool QwintoScoreSheet::score(RollOfDice& _rod, Colour& _c, int _pos){
+/*
+ * 
+ * determines if possible to place _rod value at pos at row with color c
+ *
+ */
+bool QwintoScoreSheet::score(const RollOfDice& _rod, const Colour& _c, const int _pos){
 	bool validColor = false;
+	// checks if color provided by user
+	// _c matches atleast one color in _rod
 	for(auto &di : _rod){
 		if(di.getColour() == _c){
 			if(di.getActive()){
@@ -12,14 +17,16 @@ bool QwintoScoreSheet::score(RollOfDice& _rod, Colour& _c, int _pos){
 			}
 		}
 	}
+	//if color is valid
 	if(validColor){
 		int accumulatedRoll = 0;
 		switch(_c){
-			case 0: //red
-			
+			case 0: //red row check			
 				if(validate(_pos, _c)){
 					for(auto& d : _rod){
 						if(d.getActive()){
+							//accumulate the active dice's values 
+							//(where active dice are the dice chosen by the active player)
 							accumulatedRoll += d.getNum();
 						}
 					}
@@ -74,32 +81,32 @@ int QwintoScoreSheet::calcTotal(){
 	int temp = 0;
 	
 
-	// 4
+	// fulfills 4
 	temp -= _failedA*5;
 	
 	// THIS IS FOR RED ROW
 	if(_rr.isFull()){
-		// 2
+		// fulfills 2
 		temp += _rr.getRightMostValue();
 	}else{
-		// 3
+		// fulfills 3
 		temp += _rr.getNumElems();
 	}
 	// THIS IS FOR YELLOW ROW
 	if(_ry.isFull()){
-		// 2
+		// fulfills 2
 		temp += _ry.getRightMostValue();
 	}else{
-		// 3
+		// fulfills 3
 		temp += _ry.getNumElems();
 	}
 	// THIS IS FOR BLUE ROW
 
 	if(_rb.isFull()){
-		// 2
+		// fulfills 2
 		temp += _rb.getRightMostValue();
 	}else{
-		// 3
+		// fulfills 3
 		temp += _rb.getNumElems();
 	}
 	
@@ -153,7 +160,7 @@ bool QwintoScoreSheet::operator!(){
 	return false;
 }
 
-bool QwintoScoreSheet::validate(int& _pos, Colour& _c) const{
+bool QwintoScoreSheet::validate(const int _pos, const Colour& _c) const{
 	switch(_c){
 		case 0:
 			return _rr.validate(_pos);
@@ -162,10 +169,15 @@ bool QwintoScoreSheet::validate(int& _pos, Colour& _c) const{
 		case 2:
 			return _rb.validate(_pos);
 	}
-    return false;
 }
 
-void QwintoScoreSheet::setScoreOnRow(const int& pos, const Colour& c, const RollOfDice& _rod){
+/*
+ * 
+ * helper function to set value pf _rod at pos
+ *
+ *
+ */
+void QwintoScoreSheet::setScoreOnRow(const int pos, const Colour& c, const RollOfDice& _rod){
 	switch(c){
 		case 0:
 			_rr[pos] = _rod;

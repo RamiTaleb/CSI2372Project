@@ -2,16 +2,28 @@
 #include "Colour.h"
 #include <iostream>
 #include <random>
-Dice::Dice(Colour colour, int num) : colour(colour), num(num){}
-
+/*
+ * Two argument constructor
+ *
+ */
+Dice::Dice(Colour colour, int num) : colour{colour}, active{false}, num{num}{}
+Dice::Dice(Colour colour,bool active):colour{colour},active{active}{}
+/*
+ * return face value
+ */
 int Dice::getNum() const{
     return num;
 }
-
+/*
+ * set face value random number
+ */
 void Dice::roll(){
 	num = RandomDice::rand();
 }
 
+/*
+ * print dice color and value
+ */
 std::ostream& operator<<(std::ostream &_os, const Dice& d){
 	std::string s;
 	switch(d.colour){
@@ -31,7 +43,7 @@ std::ostream& operator<<(std::ostream &_os, const Dice& d){
 			s = "WHITE";
 			break;
 	}	
-	_os << s << " : " << d.num << std::endl;
+	_os <<"Dice " << s << " : " << d.num << std::endl;
 	return _os;
 }
 

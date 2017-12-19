@@ -7,8 +7,16 @@
 #include <string>
 #include <algorithm>
 
+/*
+ * 
+ * helper structure with auxiliary methods getBonusV
+ * and _getInv
+ *
+ */
 template<const Colour C>
 struct DataRow{
+	
+	//returns all positions of bonus indices
 	static std::vector<int> _getBonusV(){
 		std::vector<int> temp;
 		switch(C){
@@ -26,6 +34,7 @@ struct DataRow{
 		}			
 		return temp;
 	}
+	//returns all positions of invalid indices
 	static int _getInv(){
 		switch(C){
 			case RED:
@@ -86,6 +95,7 @@ class QwintoRow {
 
 };
 
+
 template<const Colour COLOUR>
 int& QwintoRow<COLOUR>::operator[](int i){
 	return values[i];
@@ -119,11 +129,24 @@ bool QwintoRow<COLOUR>::validate(int pos) const{
 	return true;
 }
 
+/*
+ * 
+ * returns right most marked value in a row
+ * helps determine if score can be placed
+ *
+ */
 template<const Colour COLOUR>
 int QwintoRow<COLOUR>::getRightMostValue() const{
 	return *std::max_element(values,values+10);
 }
 
+/*
+ * 
+ * determines if row is full
+ * true if all values in array (not including inval spots) 
+ * are a non zero value
+ *
+ */
 template<const Colour COLOUR>
 bool QwintoRow<COLOUR>::isFull() const{
 	for(int i = 0; i < 10; ++i){
