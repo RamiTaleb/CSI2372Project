@@ -1,1 +1,1 @@
-Game made for the final project of CSI2372. Text based implementation of Quixx and Qwinto.
+Game made for the final project of C++ course. Text based implementation of Quixx and Qwinto.
